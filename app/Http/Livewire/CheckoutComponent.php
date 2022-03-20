@@ -39,6 +39,11 @@ class CheckoutComponent extends Component
     public $payment_method;
     public $thankyou;
 
+    public $card_no;
+    public $exp_month;
+    public $exp_year;
+    public $cvv;
+
     public function updated($fields)
     {
         $this->validateOnly($fields, [
