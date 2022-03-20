@@ -81,22 +81,27 @@
 										<p class="row-in-form">
 											<label for="fname">first name<span>*</span></label>
 											<input type="text" name="fname" value="" placeholder="Your name" wire:model="s_firstname">
+											@error('s_firstname') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="lname">last name<span>*</span></label>
 											<input type="text" name="lname" value="" placeholder="Your last name" wire:model="s_lastname">
+											@error('s_lastname') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="email">Email Addreess:</label>
 											<input type="email" name="email" value="" placeholder="Type your email" wire:model="s_email">
+											@error('s_email') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="phone">Phone number<span>*</span></label>
 											<input type="number" name="phone" value="" placeholder="10 digits format" wire:model="s_mobile">
+											@error('s_mobile') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="add">Line1:</label>
 											<input type="text" name="add" value="" placeholder="Street at apartment number" wire:model="s_line1">
+											@error('s_line1') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="add">Line2:</label>
@@ -105,18 +110,22 @@
 										<p class="row-in-form">
 											<label for="country">Country<span>*</span></label>
 											<input type="text" name="country" value="" placeholder="United States" wire:model="s_country">
+											@error('s_country') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="city">Province<span>*</span></label>
 											<input type="text" name="province" value="" placeholder="Province" wire:model="s_province">
+											@error('s_province') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="city">Town / City<span>*</span></label>
 											<input type="text" name="city" value="" placeholder="City name" wire:model="s_city">
+											@error('s_city') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 										<p class="row-in-form">
 											<label for="zip-code">Postcode / ZIP:</label>
 											<input type="number" name="zip-code" value="" placeholder="Your postal code" wire:model="s_zipcode">
+											@error('s_zipcode') <span class="text-danger">{{ $message }}</span> @enderror
 										</p>
 									</div>
 								</div>
