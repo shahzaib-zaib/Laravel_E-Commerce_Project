@@ -37,10 +37,11 @@ class CheckoutComponent extends Component
     public $s_zipcode;
 
     public $payment_method;
+    public $thankyou;
 
-    public function updated($field)
+    public function updated($fields)
     {
-        $this->validateOnly($field, [
+        $this->validateOnly($fields, [
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email',
@@ -55,7 +56,7 @@ class CheckoutComponent extends Component
 
         if($this->ship_to_different)
         {
-            $this->validateOnly([
+            $this->validateOnly($fields, [
                 's_firstname' => 'required',
                 's_lastname' => 'required',
                 's_email' => 'required|email',
@@ -101,7 +102,7 @@ class CheckoutComponent extends Component
         $order->country = $this->country;
         $order->zipcode = $this->zipcode;
         $order->status = "ordered";
-        $order->ship_to_different = $this->ship_to_different ? 1:0;
+        $order->is_shipping_different = $this->ship_to_different ? 1:0;
         $order->save();
 
         foreach(Cart::instance('cart')->content() as $item)
@@ -153,12 +154,30 @@ class CheckoutComponent extends Component
             $transaction->save();
         }
 
+        $this->thankyou = 1;
         Cart::instance('cart')->destroy();
         session()->forget('checkout');
     }
 
+    public function verifyForCheckout()
+    {
+        if(!Auth::check())
+        {
+            return redirect()->route('login');
+        }
+        else if($this->thankyou)
+        {
+            return redirect()->route('thankyou');
+        }
+        else if(!session()->get('checkout'))
+        {
+            return redirect()->route('product.cart');
+        }
+    }
+
     public function render()
     {
+        $this->verifyForCheckout();
         return view('livewire.checkout-component')->layout('layouts.base');
     }
 }
