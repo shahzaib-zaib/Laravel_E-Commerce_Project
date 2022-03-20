@@ -50,6 +50,7 @@ class CheckoutComponent extends Component
             'province' => 'required',
             'country' => 'required',
             'zipcode' => 'required',
+            'payment_method' => 'required',
         ]);
 
         if($this->ship_to_different)
@@ -80,6 +81,7 @@ class CheckoutComponent extends Component
             'province' => 'required',
             'country' => 'required',
             'zipcode' => 'required',
+            'payment_method' => 'required',
         ]);
 
         $order = new Order();
