@@ -148,6 +148,11 @@
 						<h4 class="title-box">Payment Method</h4>
 							@if($payment_method == 'card')
 								<div class="wrap-address-billing">
+									@if(Session::has('stripe_error'))
+										<div class="alert alert-danger" role="alert">
+											{{ Session::get('stripe_error') }}
+										</div>
+									@endif
 									<p class="row-in-form">
 										<label for="card-no">Card Number:</label>
 										<input type="text" name="card-no" value="" placeholder="Card Number" wire:model="card_no">
